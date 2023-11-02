@@ -31,7 +31,7 @@ export const ServiceDisplay = () => (
     }}>
         <TitleDisplay title='Services' description='This are the services we offer' />
 
-        <Stack marginTop={"25px"} flexWrap={"wrap"} maxWidth={"1000px"} marginX={"auto"} direction={"row"}>
+        <Stack marginTop={"25px"} flexWrap={"wrap"} maxWidth={"1000px"} marginX={"auto"} justifyContent={"center"} direction={"row"}>
             {serviceData.map((item) => (
                 <Stack sx={{mx:2}} maxWidth={"300px"} direction={"column"}>
                     <div className={"aboutIconContainer"}>

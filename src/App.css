@@ -73,6 +73,21 @@
   transition: border-radius 0.5s linear 0.5s , transform 0.5s;
 }
 
+.socialIconContainer{
+  color: white;
+  background-color: rgb(34, 34, 34);
+  padding: 6px;
+  padding-bottom: 0;
+  border-radius: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: transform 0.5s;
+}
+
+.socialIconContainer:hover{
+  transform: rotate(-10deg);
+}
+
 .aboutIconContainer:hover{
   border-radius: 100px;
   transform: scale(1.1);
@@ -81,4 +96,35 @@
 .aboutContainer:hover .aboutIconContainer{
   border-radius: 100px;
   transform: scale(1.1);
+}
+
+.image-tab .MuiTabs-indicator{
+  display: none;
+}
+
+.map-bg{
+  position: relative;
+  background-image: url("./assets/map-bg.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 750px;
+}
+
+@media screen and (max-width: 740px) {
+.map-bg{
+  height: 900px
+}
+}
+
+.subscribe-input{
+  padding: 5px 10px;
+}
+
+.subscribe-button{
+  background: none repeat scroll 0 0 #676D75;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 15px;
+  color: white;
+  margin-left: 5px;
 }

@@ -38,11 +38,11 @@ export const AboutDisplay = () => {
             <TitleDisplay title="About Us" description='Information about what we do.'/>            
 
             <Box sx={{
-                maxWidth: "1000px",
+                maxWidth: "1100px",
                 mx: "auto",
                 mt: 3,
 
-            }} display={"grid"} gridTemplateColumns={"repeat(12,1fr)"} >
+            }} display={"grid"} gridTemplateColumns={"repeat(12,1fr)"} gap={2}>
                 {aboutData.map((item) => (
                     <Box className={"aboutContainer"} sx={{
                         gridColumn: {
@@ -60,7 +60,9 @@ export const AboutDisplay = () => {
                         </div>
                         
                         <Stack direction={"column"}>
-                            <Typography variant='h6' sx={{ mx: 1, mt:3 }} >
+                            <Typography variant='h6' sx={{ mx: 1, mt:3 , textAlign: {
+                                xs: "center", md: "left"
+                            }}} >
                                 {item.title}
                             </Typography>
                             <Typography variant="caption" component={"small"}  sx={{ mx: 1, mb: 4 }} textAlign={"justify"} >
