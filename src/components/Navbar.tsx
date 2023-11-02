@@ -91,7 +91,7 @@ const SmallScreenMenu = () => {
 export const Navbar = () => {
 
 
-    return (<AppBar sx={{ backgroundColor: "grey.900" }} position="static">
+    return (<AppBar sx={{ backgroundColor: "grey.900" }} position="fixed">
         <Container >
             <Toolbar disableGutters>
                 <Typography variant='h5' component={"a"} >

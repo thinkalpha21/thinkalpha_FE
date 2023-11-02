@@ -12,12 +12,10 @@ export const Home = () => {
     return (<>
         <MainCarousel />
         <AboutDisplay />
-        <WhatsappButton />
         <ServiceDisplay />
-        <WhatsappButton />
         <WorksDisplay />
-        <WhatsappButton />
         <SocialDisplay />
+        <WhatsappButton />
         <ContactDisplay />
         <FooterDisplay />
 

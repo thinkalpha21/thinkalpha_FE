@@ -1,24 +1,26 @@
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-
 import GroupIcon from '@mui/icons-material/Group';
-import DiamondIcon from '@mui/icons-material/Diamond';
+import BuildIcon from '@mui/icons-material/Build';
+import SchoolIcon from '@mui/icons-material/School';
+import Bounce from 'react-reveal/Bounce';
 import { TitleDisplay } from './TitleDisplay';
+import { SectionContainer } from './SectionContainer';
+import { TransitionGroup } from 'react-transition-group';
 
 const serviceData = [
     {
-        icon: <GroupIcon sx={{ fontSize: "80px" }} />,
-        title: "We sale all kinds of Robotics and Hobbyist materals.",
-        description: "Sale Of Robotics and Hobbyist Materials"
+        icon: <GroupIcon sx={{ fontSize: "50px" }} />,
+        title: "Products",
+        description: ""
     },
     {
-        icon: <DiamondIcon sx={{ fontSize: "80px" }} />,
+        icon: <SchoolIcon sx={{ fontSize: "50px" }} />,
         title: "Course development",
         description: "We collaborate with Educator and Professional to create and recommend courses to make learning accesible to all."
     },
     {
-        icon: <GroupIcon sx={{ fontSize: "80px" }} />,
+        icon: <BuildIcon sx={{ fontSize: "50px" }} />,
         title: "Who are we?",
         description: "If you have problems on how to integrate S.T.E.A.M in to your curriculum, we are here to make it seamless."
     },
@@ -26,26 +28,32 @@ const serviceData = [
 
 
 export const ServiceDisplay = () => (
-    <Box sx={{
-        my: 3
-    }}>
+    <SectionContainer id="services">
         <TitleDisplay title='Services' description='This are the services we offer' />
+
+        <TransitionGroup>
 
         <Stack marginTop={"25px"} flexWrap={"wrap"} maxWidth={"1000px"} marginX={"auto"} justifyContent={"center"} direction={"row"}>
             {serviceData.map((item) => (
-                <Stack sx={{mx:2}} maxWidth={"300px"} direction={"column"}>
-                    <div className={"aboutIconContainer"}>
-                        {item.icon}
-                    </div>
-                    <Typography variant='h6' sx={{ mx: 1, mt: 3 }}  textAlign={"center"} >
-                        {item.title}
-                    </Typography>
-                    <Typography variant="caption" component={"small"} sx={{ mx: 1, mb: 4 }} textAlign={"justify"} >
-                        {item.description}
-                    </Typography>
-                </Stack>))}
+                <Bounce duration={2000} bottom>
+                    <Stack sx={{ mx: 2 }} maxWidth={"300px"} direction={"column"}>
+                        <div className={"aboutIconContainer"}>
+                            {item.icon}
+                        </div>
+                        <Typography variant='h6' sx={{ mx: 1, mt: 3 }} textAlign={"center"} >
+                            {item.title}
+                        </Typography>
+                        <Typography variant="caption" component={"small"} sx={{ mx: 1, mb: 4 }} textAlign={"justify"} >
+                            {item.description}
+                        </Typography>
+                    </Stack>
+
+                </Bounce>
+            ))}
         </Stack>
+        </TransitionGroup>
 
 
-    </Box>
+
+    </SectionContainer>
 );

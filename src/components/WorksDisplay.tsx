@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 import { TitleDisplay } from './TitleDisplay';
 import { useState } from 'react';
-
+import Zoom from 'react-reveal/Zoom';
 import image_p1 from "../assets/p1.jpg";
 import image_p2 from "../assets/p2.jpg";
 import image_p3 from "../assets/p3.jpg";
@@ -14,6 +14,8 @@ import image_p6 from "../assets/p6.jpg";
 import image_p7 from "../assets/p7.jpg";
 import image_p8 from "../assets/p8.jpg";
 import { styled } from '@mui/material';
+import { SectionContainer } from './SectionContainer';
+import { TransitionGroup } from 'react-transition-group';
 
 const TabsData = [
     "PORTFOLIO 1",
@@ -60,68 +62,77 @@ export const WorksDisplay = () => {
     const [tabIndex, settabIndex] = useState(-1);
 
     return (
-        <Box sx={{
-            my: 5,
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "1100px",
-            width: "100%",
-            px: 2,
-            mx: "auto"
-        }}>
-            <TitleDisplay title='OUR WORKS' description='What we are  proud of' />
-            <Tabs className='image-tab'
-                sx={{ mx: "auto", my: 2, width: "100%", maxWidth: "700px" }}
-                value={tabIndex}
-                onChange={(event, value) => {
-                    settabIndex(value);
-                }}
-                variant="scrollable"
-                scrollButtons="auto"
-                aria-label="Our works tab"
-            >
-                <CustomTab label={"All"} value={-1} />
-                {TabsData.map((item, index) => <CustomTab label={item} value={index} />)}
-
-            </Tabs>
-
-            {/* For all images */}
+        <SectionContainer id="works">
             <Box sx={{
-                display: tabIndex === -1 ? "flex" : "none",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                width: "100%"
+                display: "flex",
+                flexDirection: "column",
+                maxWidth: "1100px",
+                width: "100%",
+                px: 2,
+                mx: "auto"
             }}>
+                <TitleDisplay title='OUR WORKS' description='What we are  proud of' />
+                <Tabs className='image-tab'
+                    sx={{ mx: "auto", my: 2, width: "100%", maxWidth: "700px" }}
+                    value={tabIndex}
+                    onChange={(event, value) => {
+                        settabIndex(value);
+                    }}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    aria-label="Our works tab"
+                >
+                    <CustomTab label={"All"} value={-1} />
+                    {TabsData.map((item, index) => <CustomTab label={item} value={index} />)}
+
+                </Tabs>
+
+                <TransitionGroup>
+                {/* For all images */}
+                <Box sx={{
+                    display: tabIndex === -1 ? "flex" : "none",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    width: "100%"
+                }}>
+                    {imagesData.map((item, index) => (
+
+                        <>
+                            {item.images.map((image) => (
+                                <Zoom bottom>
+                                    <img src={image} alt={image} width={300} height={300} style={{
+                                        borderRadius: "5px",
+                                        margin: "10px 5px",
+                                    }} />
+                                </Zoom>
+                            ))
+                            }
+                        </>
+                    ))}
+                </Box>
+
+
                 {imagesData.map((item, index) => (
-                    <>
-                    {item.images.map((image) => (
+                    <Box sx={{
+                        display: tabIndex === index ? "flex" : "none",
+                        justifyContent: "center",
+                        flexWrap: "wrap"
+                    }}>
+                        {item.images.map((image) => (
+                        <Zoom bottom>
+
                             <img src={image} alt={image} width={300} height={300} style={{
                                 borderRadius: "5px",
                                 margin: "10px 5px",
                             }} />
-                        ))
-                    }
-                    </>
+                        </Zoom>
+                        ))}
+                    </Box>
                 ))}
+                </TransitionGroup>
+
+
             </Box>
-
-
-            {imagesData.map((item, index) => (
-                <Box sx={{
-                    display: tabIndex === index ? "flex" : "none",
-                    justifyContent: "center",
-                    flexWrap: "wrap"
-                }}>
-                    {item.images.map((image) => (
-                        <img src={image} alt={image} width={300} height={300} style={{
-                            borderRadius: "5px",
-                            margin: "10px 5px",
-                        }} />
-                    ))}
-                </Box>
-            ))}
-
-
-        </Box>
+        </SectionContainer>
     );
 }

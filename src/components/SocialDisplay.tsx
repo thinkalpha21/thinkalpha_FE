@@ -1,7 +1,4 @@
-import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -9,6 +6,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import RedditIcon from '@mui/icons-material/Reddit';
 import { TitleDisplay } from './TitleDisplay';
+import { SectionContainer } from './SectionContainer';
 
 const socialData = [
     {
@@ -39,9 +37,7 @@ const socialData = [
 
 
 export const SocialDisplay = () => (
-    <Box sx={{
-        my: 3
-    }}>
+    <SectionContainer id="social" > 
         <TitleDisplay title='JOIN US' description='Follow us on' />
 
         <Stack marginTop={"25px"} flexWrap={"wrap"} maxWidth={"1000px"} marginX={"auto"} justifyContent={"center"} direction={"row"}>
@@ -52,5 +48,5 @@ export const SocialDisplay = () => (
         </Stack>
 
 
-    </Box>
+    </SectionContainer>
 );

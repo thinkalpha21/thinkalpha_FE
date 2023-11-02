@@ -4,6 +4,7 @@
   width: 100%;
   height: calc(100vh - 70px);
   position: relative;
+  margin-top: 69px;
 
 }
 
@@ -64,8 +65,8 @@
   color: white;
   padding: 10px;
   padding-bottom: 0;
-  border-radius: 25px;
-  border: 5px double white;
+  border-radius: 5px;
+  border: 2px solid white;
   outline: 5px solid rgb(34, 34, 34);
   align-self: center;
   margin-left: 20px;
@@ -91,6 +92,7 @@
 .aboutIconContainer:hover{
   border-radius: 100px;
   transform: scale(1.1);
+  border-style: dashed;
 }
 
 .aboutContainer:hover .aboutIconContainer{
