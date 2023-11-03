@@ -12,7 +12,7 @@ const serviceData = [
     {
         icon: <GroupIcon sx={{ fontSize: "50px" }} />,
         title: "Products",
-        description: ""
+        description: "We provide amenities and tools needed."
     },
     {
         icon: <SchoolIcon sx={{ fontSize: "50px" }} />,

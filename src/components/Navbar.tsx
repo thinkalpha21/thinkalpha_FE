@@ -3,13 +3,50 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
+import { styled } from '@mui/material';
 
+const StyledMenu = styled((props: MenuProps) => (
+    <Menu
+      elevation={0}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    '& .MuiPaper-root': {
+      borderRadius: 6,
+      marginTop: 10,
+      minWidth: "100%",
+      color: "white",
+      backgroundColor: "#2a2a2a",
+      '& li': {
+        justifyContent: "center",
+        display: "flex",
+      },
+      '& .MuiMenuItem-root': {
+        '& .MuiSvgIcon-root': {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        '&:active': {
+          backgroundColor: "grey",
+        },
+      },
+    },
+  }));
 
 const pages = [
     {
@@ -61,7 +98,7 @@ const SmallScreenMenu = () => {
         >
             <MenuIcon />
         </IconButton>
-        <Menu
+        <StyledMenu
             id="menu-appbar"
             anchorEl={anchorElNav}
             anchorOrigin={{
@@ -84,7 +121,7 @@ const SmallScreenMenu = () => {
                     <Typography textAlign="center" component="a" href={page.path}>{page.name}</Typography>
                 </MenuItem>
             ))}
-        </Menu>
+        </StyledMenu>
     </Box>)
 };
 

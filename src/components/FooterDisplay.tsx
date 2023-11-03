@@ -86,7 +86,7 @@ export const FooterDisplay = () => (
             textAlign: "center", wordSpacing: "5px"
         }}>
             <Typography>
-                Copyright © 2023 - Designed By <a style={{color: "#676D75"}} href='https://davoboss1.github.io' >David Akinfenwa</a>
+                Copyright © 2023 - Designed By Odeyemi Increase & <a style={{color: "#676D75"}} href='https://davoboss1.github.io' >David Akinfenwa</a>
             </Typography>
         </Stack>
     </>

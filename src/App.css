@@ -4,8 +4,15 @@
   width: 100%;
   height: calc(100vh - 70px);
   position: relative;
-  margin-top: 69px;
+  margin-top: 56px;
 
+}
+
+@media screen and (min-width: 900px) {
+  .carousel-container {
+    margin-top: 68px;
+  
+  }
 }
 
 .carousel {
@@ -31,10 +38,12 @@
 
 .carousel-Effect {
   position: absolute;
-  width: 800px;
+  width: 100%;
   height: 300px;
   opacity: 0.2;
   margin: 10px;
+  max-width: 90vw;
+  background-color: black;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
   -moz-box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 1);
@@ -47,11 +56,6 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .carousel-Effect{
-    width: 500px;
-  }
-}
 
 .stepper-container{
   position: absolute;
@@ -114,9 +118,21 @@
 
 @media screen and (max-width: 740px) {
 .map-bg{
-  height: 900px
+  height: 908px
 }
 }
+
+@media screen and (max-width: 740px) {
+  .map-bg{
+    height: 908px
+  }
+  }
+
+  @media screen and (max-width: 404px) {
+    .map-bg{
+      height: 933px
+    }
+    }
 
 .subscribe-input{
   padding: 5px 10px;
