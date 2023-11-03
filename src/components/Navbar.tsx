@@ -28,7 +28,7 @@ const StyledMenu = styled((props: MenuProps) => (
     '& .MuiPaper-root': {
       borderRadius: 6,
       marginTop: 10,
-      minWidth: "100%",
+      minWidth: "90%",
       color: "white",
       backgroundColor: "#2a2a2a",
       '& li': {
