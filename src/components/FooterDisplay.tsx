@@ -67,8 +67,8 @@ export const FooterDisplay = () => (
                 </Typography>
 
                 <div>
-                    <input type="text" placeholder='Enter email address' className='subscribe-input' />
-                    <button className='subscribe-button'>Submit</button>
+                    <input disabled type="text" placeholder='Enter email address' className='subscribe-input' />
+                    <button disabled className='subscribe-button'>Submit</button>
                 </div>
 
                 <Typography sx={{ mt: 2, maxWidth: "300px" }} variant='subtitle2'>
@@ -86,7 +86,7 @@ export const FooterDisplay = () => (
             textAlign: "center", wordSpacing: "5px"
         }}>
             <Typography>
-                Copyright © 2023 - Designed By Odeyemi Increase & <a style={{color: "#676D75"}} href='https://davoboss1.github.io' >David Akinfenwa</a>
+                Copyright © 2023 - Designed By Odeyemi Increase & <a style={{color: "#676D75"}} href='https://davoboss1.github.io'  target='_blank'>David Akinfenwa</a>
             </Typography>
         </Stack>
     </>

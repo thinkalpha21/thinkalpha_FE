@@ -1,52 +1,19 @@
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { TitleDisplay } from './TitleDisplay';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Zoom from 'react-reveal/Zoom';
-import image_p1 from "../assets/p1.jpg";
-import image_p2 from "../assets/p2.jpg";
-import image_p3 from "../assets/p3.jpg";
-import image_p4 from "../assets/p4.jpg";
-import image_p5 from "../assets/p5.jpg";
-import image_p6 from "../assets/p6.jpg";
-import image_p7 from "../assets/p7.jpg";
-import image_p8 from "../assets/p8.jpg";
 import { styled } from '@mui/material';
 import { SectionContainer } from './SectionContainer';
 import { TransitionGroup } from 'react-transition-group';
+import axios from 'axios';
+import { HOST } from '../globals';
 
-const TabsData = [
-    "PORTFOLIO 1",
-    "PORTFOLIO 2",
-    "PORTFOLIO 3",
-    "PORTFOLIO 4",
-    "PORTFOLIO 5",
-]
-
-const imagesData = [
-    {
-        tabIndex: 0,
-        images: [image_p1, image_p2]
-    },
-    {
-        tabIndex: 1,
-        images: [image_p3, image_p4]
-    },
-    {
-        tabIndex: 2,
-        images: [image_p4, image_p5]
-    },
-    {
-        tabIndex: 3,
-        images: [image_p6, image_p7]
-    },
-    {
-        tabIndex: 4,
-        images: [image_p8]
-    },
-]
 
 const CustomTab = styled(Tab)({
     '&.Mui-selected': {
@@ -57,9 +24,58 @@ const CustomTab = styled(Tab)({
 
 })
 
+type categories = {
+    id: string,
+    cover_photo: string,
+    name: string,
+    description: string
+}
+
+type images = {
+    id: string,
+    name: string,
+    file: string,
+    link: string,
+    "type": "VIDEO" | "IMAGE",
+}
+
+const fetchCategories = (setCategoriesState: (data: categories[] | undefined) => void) => {
+    axios.get(HOST + "/general/category/list/").then((res) => res.data).then((data) => {
+        setCategoriesState(data.results);
+    }).catch((error) => {
+        setCategoriesState(undefined);
+    });
+}
+
+const fetchImages = (id: string, setImageState: (data: images[] | undefined) => void) => {
+    axios.get(HOST + `/general/media/list?tags=${id}`).then((res) => res.data).then((data) => {
+        setImageState(data?.results?.length > 0 ? data?.results : undefined);
+    }).catch((error) => {
+        setImageState(undefined);
+    });
+}
 
 export const WorksDisplay = () => {
-    const [tabIndex, settabIndex] = useState(-1);
+    const [activeCategory, setActiveCategory] = useState("");
+    const [categories, setCategories] = useState<categories[] | undefined>([]);
+    const [images, setImages] = useState<images[] | undefined>([]);
+
+    useEffect(() => {
+        fetchCategories(setCategories);
+    }, []);
+
+    useEffect(() => {
+        if (categories && categories.length > 0) {
+            setActiveCategory(categories[0].id);
+        }
+    }, [categories]);
+
+    useEffect(() => {
+        setImages([]);
+        fetchImages(activeCategory, setImages);
+    }, [activeCategory]);
+
+
 
     return (
         <SectionContainer id="works">
@@ -74,61 +90,53 @@ export const WorksDisplay = () => {
                 <TitleDisplay title='OUR WORKS' description='What we are  proud of' />
                 <Tabs className='image-tab'
                     sx={{ mx: "auto", my: 2, width: "100%", maxWidth: "700px" }}
-                    value={tabIndex}
-                    onChange={(event, value) => {
-                        settabIndex(value);
+                    value={activeCategory}
+                    onChange={(event, value: string) => {
+                        setActiveCategory(value);
                     }}
                     variant="scrollable"
                     scrollButtons="auto"
                     aria-label="Our works tab"
                 >
-                    <CustomTab label={"All"} value={-1} />
-                    {TabsData.map((item, index) => <CustomTab label={item} value={index} />)}
+                    {categories?.map((item) => <CustomTab key={item.id} label={item.name} value={item.id} />)}
 
                 </Tabs>
 
                 <TransitionGroup>
-                {/* For all images */}
-                <Box sx={{
-                    display: tabIndex === -1 ? "flex" : "none",
-                    justifyContent: "center",
-                    flexWrap: "wrap",
-                    width: "100%"
-                }}>
-                    {imagesData.map((item, index) => (
-
-                        <>
-                            {item.images.map((image) => (
-                                <Zoom bottom>
-                                    <img src={image} alt={image} width={300} height={300} style={{
-                                        borderRadius: "5px",
-                                        margin: "10px 5px",
-                                    }} />
-                                </Zoom>
-                            ))
-                            }
-                        </>
-                    ))}
-                </Box>
-
-
-                {imagesData.map((item, index) => (
+                    {/* For all images */}
                     <Box sx={{
-                        display: tabIndex === index ? "flex" : "none",
+                        display: "flex",
                         justifyContent: "center",
-                        flexWrap: "wrap"
+                        flexWrap: "wrap",
+                        width: "100%"
                     }}>
-                        {item.images.map((image) => (
-                        <Zoom bottom>
+                        {images?.map((item) => (
+                            <Zoom key={item.id} bottom>
+                                {item.type === "IMAGE" ? <img src={item.link} alt={item.name} width={300} height={300} style={{
+                                    borderRadius: "5px",
+                                    margin: "10px 5px",
+                                }} /> :
+                                    <video width="300" height="300" controls>
+                                        <source src={item.link} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                }
 
-                            <img src={image} alt={image} width={300} height={300} style={{
-                                borderRadius: "5px",
-                                margin: "10px 5px",
-                            }} />
-                        </Zoom>
+                            </Zoom>
                         ))}
+
+                        {images === undefined && <Alert severity="error" sx={{
+                            width: "100%"
+                        }} onClick={()=>{
+                            setImages([]);
+                            fetchImages(activeCategory, setImages);
+                        }}>
+                            <AlertTitle>Error</AlertTitle>
+                            No images was loaded. You can click the this message to try again.
+                        </Alert>}
+
+                        {images?.length === 0 && <CircularProgress color='secondary' />}
                     </Box>
-                ))}
                 </TransitionGroup>
 
 

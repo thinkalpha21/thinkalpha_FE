@@ -37,7 +37,7 @@ export const MainCarousel = () => {
                 height: "100%",
             }} className='carousel' enableMouseEvents>
                 {CarouselData.map((item) => (
-                    <Box className={"carouselDisplayContainer"} >
+                    <Box key={item.title + item.description} className={"carouselDisplayContainer"} >
                         <div className="carousel-Effect"></div>
                         <Typography variant='h3' textAlign={"center"} fontWeight={"bold"} color={"white"} marginX={"15px"}>
                             {item.title}

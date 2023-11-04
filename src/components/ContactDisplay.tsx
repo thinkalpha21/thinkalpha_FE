@@ -71,6 +71,15 @@ const CustomTextField = styled(TextField)({
     },
 });
 
+const contactTextStyle = {
+    width: "100%",
+    maxWidth: {
+        md: "150px",
+        width: "100%"
+    },
+    lineHeight: "30px"
+}
+
 export const ContactDisplay = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<{
@@ -121,27 +130,19 @@ export const ContactDisplay = () => {
         <SectionContainer id="contact"  >
 
             <div className='map-bg'>
-                <Box sx={{
-                    position: "absolute",
-                    backgroundColor: "rgba(5, 8, 11, 0.93)",
-                    width: "100%",
-                    minHeight: "750px",
-                    color: "white",
-                    py: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center"
-                }}>
+                <Box className="contact-container">
                     <TitleDisplay title='CONTACT US' description='How you can contact us' />
                     <Stack direction={"row"} flexWrap={"wrap"} sx={{
                         my: 3,
                         mt: 6,
                         mx: "auto",
-                        px: 3,
                         width: "100%",
                         justifyContent: "space-around"
                     }}>
-                        <Stack direction={"column"}>
+                        <Stack sx={{
+                            maxWidth: {xs: "500px", sm: "200px"},
+                            width: "100%"
+                        }} direction={"column"}>
                             <Flip left cascade>
                                 <Typography sx={{ mb: 2 }} variant='h5'>
                                     Our Address
@@ -149,46 +150,33 @@ export const ContactDisplay = () => {
                                 <Stack direction={"row"}>
                                     <LocationOnIcon sx={icon_styles} />
 
-                                    <Typography sx={{
-                                        maxWidth: "150px",
-                                        lineHeight: "30px"
-                                    }} variant='caption'>
-                                        40 Akinwummi Street ,
-                                        Alagomeji Yaba ,
-                                        Lagos, Nigeria, 33148
+                                    <Typography sx={contactTextStyle} variant='caption'>
+                                    40 Oshilemo street, Ajangbadi Ojo, Lagos, Nigeria
                                     </Typography>
                                 </Stack>
                                 <Stack direction={"row"}>
                                     <PhoneCallbackIcon sx={icon_styles} />
 
-                                    <Typography sx={{
-                                        maxWidth: "150px",
-                                        lineHeight: "30px"
-                                    }} variant='caption'>
-                                        +234 676 865 8754
+                                    <Typography component={"a"} href="tel:+2347068448786" sx={contactTextStyle} variant='caption'>
+                                        +234 706 844 8786
                                     </Typography>
                                 </Stack>
 
                                 <Stack direction={"row"}>
                                     <PrintIcon sx={icon_styles} />
 
-                                    <Typography sx={{
-                                        maxWidth: "150px",
-                                        lineHeight: "30px"
-                                    }} variant='caption'>
-                                        +234 676 865 8754
+                                    <Typography component={"a"} href="tel:+2347068448786" sx={contactTextStyle} variant='caption'>
+                                    +234 706 844 8786
+
                                     </Typography>
 
                                 </Stack>
                                 <Stack direction={"row"}>
                                     <MailIcon sx={icon_styles} />
 
-                                    <Typography sx={{
-                                        maxWidth: "150px",
-                                        lineHeight: "30px"
-                                    }} variant='caption'>
+                                    <Typography component={"a"} href="mailto:info@thinkalpha.com.ng" sx={contactTextStyle} variant='caption'>
 
-                                        thinkalpha21o@gmail.com
+                                        info@thinkalpha.com.ng
                                     </Typography>
 
                                 </Stack>
@@ -196,7 +184,8 @@ export const ContactDisplay = () => {
                         </Stack>
                         <Stack direction={"column"} sx={{
                             maxWidth: "500px",
-                            width: "100%"
+                            width: "100%",
+                            my:3
                         }}>
                             <Typography sx={{ mb: 2 }} variant='h5'>
                                 Write to us
@@ -204,7 +193,7 @@ export const ContactDisplay = () => {
                             <form onSubmit={sendContactMessage}>
 
                                 {form.map((item) => (
-                                    <Fade left>
+                                    <Fade key={item.name} left>
                                         <div style={{
                                             display: "flex",
                                             flexDirection: "column",
