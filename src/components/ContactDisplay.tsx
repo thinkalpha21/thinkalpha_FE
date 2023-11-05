@@ -2,7 +2,6 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import LocationOnIcon from '@mui/icons-material/LocationOnSharp';
@@ -18,6 +17,7 @@ import { SectionContainer } from './SectionContainer';
 import { FormEvent, useState } from 'react';
 import axios from 'axios';
 import { HOST } from '../globals';
+import { CustomTextField } from './CustomTextField';
 
 const icon_styles = { m: 1, fontSize: "20px" };
 
@@ -42,34 +42,6 @@ const form = [
     },
 ]
 
-const CustomTextField = styled(TextField)({
-    borderRadius: "2px",
-    '& label': {
-        color: '#939393',
-    },
-    '& label.Mui-focused': {
-        color: 'white',
-    },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: '#B2BAC2',
-    },
-    '& input': {
-        color: 'white',
-    },
-    '& textarea': {
-        color: 'white',
-    },
-    '& .MuiOutlinedInput-root': {
-        py: "20px",
-        '&:hover fieldset': {
-            borderColor: '#B2BAC2',
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: 'white',
-            color: "white"
-        },
-    },
-});
 
 const contactTextStyle = {
     width: "100%",

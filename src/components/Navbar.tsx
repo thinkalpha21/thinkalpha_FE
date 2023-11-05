@@ -30,7 +30,7 @@ const StyledMenu = styled((props: MenuProps) => (
       marginTop: 10,
       minWidth: "90%",
       color: "white",
-      backgroundColor: "#2a2a2a",
+      backgroundColor: "#1c1c1c",
       '& li': {
         justifyContent: "center",
         display: "flex",
@@ -128,7 +128,7 @@ const SmallScreenMenu = () => {
 export const Navbar = () => {
 
 
-    return (<AppBar sx={{ backgroundColor: "grey.900" }} position="fixed">
+    return (<AppBar sx={{ backgroundColor: "black" }} position="fixed">
         <Container >
             <Toolbar disableGutters>
                 <Typography variant='h5' component={"a"} >

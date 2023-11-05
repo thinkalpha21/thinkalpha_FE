@@ -112,22 +112,25 @@ export const WorksDisplay = () => {
                     }}>
                         {images?.map((item) => (
                             <Zoom key={item.id} bottom>
-                                {item.type === "IMAGE" ? <img src={item.link} alt={item.name} width={300} height={300} style={{
+                                {item.type === "IMAGE" ? <img src={item.file} alt={item.name} width={300} height={300} style={{
                                     borderRadius: "5px",
                                     margin: "10px 5px",
                                 }} /> :
-                                    <video width="300" height="300" controls>
-                                        <source src={item.link} type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    <iframe
+                                        width="300"
+                                        height="300"
+                                        src={item.link}
+                                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        title={item.name}
+                                    />
                                 }
 
                             </Zoom>
                         ))}
-
                         {images === undefined && <Alert severity="error" sx={{
                             width: "100%"
-                        }} onClick={()=>{
+                        }} onClick={() => {
                             setImages([]);
                             fetchImages(activeCategory, setImages);
                         }}>
