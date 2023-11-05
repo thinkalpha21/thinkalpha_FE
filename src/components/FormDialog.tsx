@@ -97,12 +97,14 @@ export default function FormDialog({ openDialog, closeDialog }: { openDialog: bo
             <CustomDialog maxWidth={"xs"} open={openDialog} onClose={handleClose} >
                 <DialogTitle>ThinkAlpha Registration</DialogTitle>
                 <DialogContent>
-                    <Typography>
+                    <Typography sx={{
+                        my: 2
+                    }}>
                         Thank you for your interest in ThinkAlpha. Fill form below to proceed with your registration
                     </Typography>
                     <form ref={formRef}>
                         {form_data.map((item) => (
-                            <CustomTextField name={item.name} required key={item.label} className="formInput" id={item.label} label={item.label} variant="outlined" fullWidth type={item.type} sx={{
+                            <CustomTextField name={item.name} required key={item.label} className="formInput" id={item.label} label={item.label} variant="filled" size="small" fullWidth type={item.type} sx={{
                                 outlineColor: "white",
                                 color: "white",
                                 mt: 2,
