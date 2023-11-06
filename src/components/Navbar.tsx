@@ -65,14 +65,14 @@ const pages = [
         name: "Works",
         path: "#works"
     },
-    {
-        name: "Team",
-        path: "#team"
-    },
-    {
-        name: "Prices",
-        path: "#prices"
-    },
+    // {
+    //     name: "Team",
+    //     path: "#team"
+    // },
+    // {
+    //     name: "Prices",
+    //     path: "#prices"
+    // },
     {
         name: "Contact",
         path: "#contact"

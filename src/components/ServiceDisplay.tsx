@@ -11,18 +11,18 @@ import { TransitionGroup } from 'react-transition-group';
 const serviceData = [
     {
         icon: <GroupIcon sx={{ fontSize: "50px" }} />,
-        title: "Products",
-        description: "We provide amenities and tools needed for creative and innovative ideas to come alive."
+        title: "Product/Sales",
+        description: "We take pride in offering a diverse range of high-quality products that cater to the diverse needs and preferences of our valued customers. From cutting-edge technology solutions to stylish and functional lifestyle products, our carefully curated collection is designed to enhance your everyday life. With a commitment to excellence, we ensure that each product is meticulously crafted using premium materials and innovative manufacturing processes, guaranteeing durability and reliability. Our dedicated sales team is passionate about delivering exceptional customer service, providing expert guidance and support to help you make informed purchase decisions."
     },
     {
         icon: <SchoolIcon sx={{ fontSize: "50px" }} />,
         title: "Course development",
-        description: "We collaborate with Educator and Professional to create and recommend courses to make learning accesible to all."
+        description: "Our dedicated Course Development team is committed to crafting enriching and dynamic learning experiences that cater to the evolving needs of our clients and learners. With a focus on comprehensive research, innovative instructional design, and the integration of cutting-edge technologies, our team strives to create engaging and interactive courses that foster meaningful learning outcomes. Leveraging our expertise in curriculum design, pedagogy, and multimedia content development, we ensure that every course is meticulously tailored to meet industry standards and learner objectives"
     },
     {
         icon: <BuildIcon sx={{ fontSize: "50px" }} />,
-        title: "Who are we?",
-        description: "If you have problems on how to integrate S.T.E.A.M in to your curriculum, we are here to make it seamless."
+        title: "Software Development",
+        description: "Our team of dedicated Software Engineers plays a pivotal role in transforming innovative ideas into tangible realities. With a profound understanding of modern technological advancements and a keen eye for detail, our developers are committed to delivering cutting-edge solutions that meet the unique requirements of our clients. Leveraging their expertise in coding, design, and project management, our developers ensure seamless execution and timely delivery of every project. "
     },
 ]
 

@@ -75,7 +75,7 @@ export const MainCarousel = () => {
                             <></>
                         }
                     />
-                    <div>
+                    <Box textAlign='center'>
                         <Typography variant='h6' textAlign={"center"} fontWeight={"bold"} color={"white"} marginTop={2} marginX={"15px"}>
                             Are you interested?
                         </Typography>
@@ -83,7 +83,7 @@ export const MainCarousel = () => {
                             setopenFormDialog(true);
                         }} variant="contained" sx={{ display: "block", backgroundColor: "grey.900", py: 1.5, px: 8, borderRadius: "1px", mt: 2, fontSize: 12 }}>Register Now</Button>
 
-                    </div>
+                    </Box>
                 </div>
             </div>
             <div className="carousel-bg"></div>

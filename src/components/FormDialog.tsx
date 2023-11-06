@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { CircularProgress, styled } from '@mui/material';
 import { CustomTextField } from './CustomTextField';
-import { FormEvent, useRef, useState } from 'react';
+import {  useRef, useState } from 'react';
 import axios from 'axios';
 import { HOST } from '../globals';
 
@@ -20,6 +20,10 @@ const CustomDialog = styled(Dialog)(() => ({
 }));
 
 const form_data = [
+    {
+        label: "Head Teacher Name",
+        name: "head_teacher",
+    },
     {
         label: "School Name",
         name: "school_name",
@@ -100,7 +104,7 @@ export default function FormDialog({ openDialog, closeDialog }: { openDialog: bo
                     <Typography sx={{
                         my: 2
                     }}>
-                        Thank you for your interest in ThinkAlpha. Fill form below to proceed with your registration
+                        Thank you for your interest in ThinkAlpha S.T.E.A.M program. Fill form below to proceed with your registration
                     </Typography>
                     <form ref={formRef}>
                         {form_data.map((item) => (
