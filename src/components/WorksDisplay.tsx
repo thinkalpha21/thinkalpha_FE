@@ -42,7 +42,7 @@ type images = {
 const fetchCategories = (setCategoriesState: (data: categories[] | undefined) => void) => {
     axios.get(HOST + "/general/category/list/").then((res) => res.data).then((data) => {
         setCategoriesState(data.results);
-    }).catch((error) => {
+    }).catch(() => {
         setCategoriesState(undefined);
     });
 }
@@ -50,7 +50,7 @@ const fetchCategories = (setCategoriesState: (data: categories[] | undefined) =>
 const fetchImages = (id: string, setImageState: (data: images[] | undefined) => void) => {
     axios.get(HOST + `/general/media/list?tags=${id}`).then((res) => res.data).then((data) => {
         setImageState(data?.results?.length > 0 ? data?.results : undefined);
-    }).catch((error) => {
+    }).catch(() => {
         setImageState(undefined);
     });
 }
@@ -72,6 +72,7 @@ export const WorksDisplay = () => {
 
     useEffect(() => {
         setImages([]);
+        if(activeCategory)
         fetchImages(activeCategory, setImages);
     }, [activeCategory]);
 

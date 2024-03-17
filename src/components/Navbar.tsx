@@ -10,43 +10,57 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import { styled } from '@mui/material';
+import LoginDialog from './LoginDialog';
+import { Link } from 'react-router-dom';
+
 
 const StyledMenu = styled((props: MenuProps) => (
     <Menu
-      elevation={0}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      {...props}
+        elevation={0}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }}
+        {...props}
     />
-  ))(({ theme }) => ({
+))(({ theme }) => ({
     '& .MuiPaper-root': {
-      borderRadius: 6,
-      marginTop: 10,
-      minWidth: "90%",
-      color: "white",
-      backgroundColor: "#1c1c1c",
-      '& li': {
-        justifyContent: "center",
-        display: "flex",
-      },
-      '& .MuiMenuItem-root': {
-        '& .MuiSvgIcon-root': {
-          fontSize: 18,
-          color: theme.palette.text.secondary,
-          marginRight: theme.spacing(1.5),
+        borderRadius: 6,
+        marginTop: 10,
+        minWidth: "90%",
+        color: "white",
+        backgroundColor: "#1c1c1c",
+        '& li': {
+            justifyContent: "center",
+            display: "flex",
         },
-        '&:active': {
-          backgroundColor: "grey",
+        '& .MuiMenuItem-root': {
+            '& .MuiSvgIcon-root': {
+                fontSize: 18,
+                color: theme.palette.text.secondary,
+                marginRight: theme.spacing(1.5),
+            },
+            '&:active': {
+                backgroundColor: "grey",
+            },
         },
-      },
     },
-  }));
+}));
+
+const LoginButton = styled(Button)({
+    display: 'block',
+    borderColor: "white",
+    color: "white",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "100px",
+    alignSelf: "center"
+
+});
 
 const pages = [
     {
@@ -65,14 +79,6 @@ const pages = [
         name: "Works",
         path: "#works"
     },
-    // {
-    //     name: "Team",
-    //     path: "#team"
-    // },
-    // {
-    //     name: "Prices",
-    //     path: "#prices"
-    // },
     {
         name: "Contact",
         path: "#contact"
@@ -80,7 +86,7 @@ const pages = [
 
 ];
 
-const SmallScreenMenu = () => {
+const SmallScreenMenu = ({setopenLoginDialog}: {setopenLoginDialog: (arg: boolean)=>void}) => {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorElNav(event.currentTarget);
@@ -121,11 +127,24 @@ const SmallScreenMenu = () => {
                     <Typography textAlign="center" component="a" href={page.path}>{page.name}</Typography>
                 </MenuItem>
             ))}
+            {
+                        window.sessionStorage.getItem("access") ? <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center" component={Link} to={"/dashboard"}>Dashboard</Typography>
+                    </MenuItem> : <></>
+                    }
+
+            {<LoginButton sx={{
+                display: window.sessionStorage.getItem("access") ? "none" : "block"
+            }} variant='outlined' onClick={() => setopenLoginDialog(true)}>Login</LoginButton>}
+
+
         </StyledMenu>
     </Box>)
 };
 
 export const Navbar = () => {
+
+    const [openLoginDialog, setopenLoginDialog] = useState(false);
 
 
     return (<AppBar sx={{ backgroundColor: "black" }} position="fixed">
@@ -141,12 +160,29 @@ export const Navbar = () => {
                             key={page.name}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            <a  href={page.path}>{page.name}</a>
-                            
+                            <a href={page.path}>{page.name}</a>
+
                         </Button>
                     ))}
+                    {
+                        window.sessionStorage.getItem("access") ? <Button
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        <Link to={"/dashboard"}>Dashboard</Link>
+
+                    </Button> : <></>
+                    }
+                    {<LoginButton sx={{
+                        alignSelf: "center",
+                        display: window.sessionStorage.getItem("access") ? "none" : "block"
+                    }} variant='outlined' onClick={() => setopenLoginDialog(true)}>Login</LoginButton>}
+
+
+
+
                 </Box>
-                <SmallScreenMenu />
+                <SmallScreenMenu setopenLoginDialog={setopenLoginDialog} />
+                <LoginDialog openDialog={openLoginDialog} closeDialog={() => setopenLoginDialog(false)} />
 
             </Toolbar>
         </Container>
