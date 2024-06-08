@@ -17,8 +17,6 @@ export const Home = () => {
         <SocialDisplay />
         <WhatsappButton />
         <ContactDisplay />
-        <FooterDisplay />
-
     </>
     );
 }
